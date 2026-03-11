@@ -1,0 +1,34 @@
+{
+  "title": "PostgreSQL Primary Overview",
+  "tags": ["postgres", "primary"],
+  "panels": [
+    {
+      "title": "Connections",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "pg_stat_activity_count{instance=\"pg-primary\"}",
+          "legendFormat": "Connections"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {"mode": "thresholds"}
+        }
+      }
+    },
+    {
+      "title": "Replication Status",
+      "type": "stat", 
+      "targets": [
+        {
+          "expr": "pg_replication_lag_seconds{instance=\"pg-primary\"}",
+          "legendFormat": "Lag"
+        }
+      ]
+    }
+  ],
+  "time": {"from": "now-6h", "to": "now"},
+  "timezone": "",
+  "refresh": "30s"
+}

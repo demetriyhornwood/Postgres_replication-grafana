@@ -1,0 +1,24 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  # PostgreSQL Primary
+  - job_name: 'pg-primary'
+    static_configs:
+      - targets: ['172.16.1.4:9187']
+        labels:
+          instance: 'pg-primary'
+          role: 'primary'
+  
+  # PostgreSQL Replica  
+  - job_name: 'pg-replica'
+    static_configs:
+      - targets: ['172.16.1.5:9187']
+        labels:
+          instance: 'pg-replica'
+          role: 'replica'
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['172.16.1.10:9090']

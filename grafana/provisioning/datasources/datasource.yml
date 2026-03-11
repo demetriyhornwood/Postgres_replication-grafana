@@ -1,0 +1,19 @@
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://172.16.1.10:9090
+    isDefault: true
+    jsonData:
+      timeInterval: 15s
+
+providers:
+  - name: 'postgres'
+    folder: ''
+    type: file
+    disableDeletion: true
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards
